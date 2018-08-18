@@ -1,0 +1,36 @@
+Sub MultiYear()
+
+For Each ws In Worksheets
+
+Dim Ticker_name As String
+Dim Ticker_total As Double
+    
+    
+    Ticker_total = 0
+    
+    Dim Ticker_Table_Row As Integer
+    Ticker_Table_Row = 2
+    
+    For i = 2 To 800000
+    
+        If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
+        
+        Ticker_name = Cells(i, 1).Value
+        Ticker_total = Ticker_total + Cells(i, 7).Value
+        
+        ws.Range("L" & Ticker_Table_Row).Value = Ticker_name
+        ws.Range("M" & Ticker_Table_Row).Value = Ticker_total
+        
+        Ticker_Table_Row = Ticker_Table_Row + 1
+        Ticker_total = 0
+        
+        Else
+            Ticker_total = Ticker_total + ws.Cells(i, 7).Value
+            
+            End If
+            
+            Next i
+            
+            Next ws
+            
+    End Sub
